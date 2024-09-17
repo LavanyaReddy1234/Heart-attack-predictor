@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login History</title>
+</head>
+<body>
+    <h1>Login History for {{ request.user.username }}</h1>
+    <ul>
+        {% for entry in history %}
+        <li>{{ entry.login_time }} - IP: {{ entry.ip_address }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Attack Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f9f9f9 25%, #e0e0e0 100%);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 700px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #007BFF;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            font-size: 1.5em;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #e9f7ff;
+            margin: 8px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #cfe8ff;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.1);
+            transition: box-shadow 0.2s, background 0.2s;
+        }
+        li:hover {
+            background: #d1eaff;
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2);
+        }
+        .no-records {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+        .print-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #007BFF 25%, #0056b3 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+        .print-button:hover {
+            background: linear-gradient(135deg, #0056b3 25%, #003d80 100%);
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 123, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Heart Attack Prediction for {{ person.name }}</h1>
+        <p><strong>Age:</strong> {{ person.age }}</p>
+        <p><strong>Height:</strong> {{ person.height }} cm</p>
+        <p><strong>Weight:</strong> {{ person.weight }} kg</p>
+        <p><strong>Blood Pressure:</strong> {{ person.blood_pressure }} mmHg</p>
+        <p><strong>Cholesterol Levels:</strong> {{ person.cholesterol_levels }} mg/dL</p>
+        <p><strong>Prediction:</strong> {{ prediction }}</p>
+        
+        <h2>Previous Records</h2>
+        <ul>
+            {% for p in previous_persons %}
+            <li>
+                <strong>Name:</strong> {{ p.name }}, 
+                <strong>Age:</strong> {{ p.age }}, 
+                <strong>Height:</strong> {{ p.height }} cm, 
+                <strong>Weight:</strong> {{ p.weight }} kg, 
+                <strong>Blood Pressure:</strong> {{ p.blood_pressure }} mmHg, 
+                <strong>Cholesterol Levels:</strong> {{ p.cholesterol_levels }} mg/dL
+            </li>
+            {% empty %}
+            <li class="no-records">No previous records found.</li>
+            {% endfor %}
+        </ul>
+        
+        <!-- Print Button -->
+        <button class="print-button" onclick="window.print()">Print</button>
+    </div>
+</body>
+</html>
